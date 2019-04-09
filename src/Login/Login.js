@@ -5,15 +5,14 @@ const login = (props) =>  {
         <div>
             <form>
                 <div>
-                    <input placeholder="USERNAME"></input>
+                    <input onChange={props.emailChange} className="text-center" type="text" placeholder="EMAIL ADDRESS"></input>
                 </div>
                 <div>
-                    <input placeholder="PASSWORD"></input>
+                    <input onChange={props.passwordChange} className="text-center" type="password" placeholder="PASSWORD"></input>
                 </div>
                 <div>
                     Sign Up | Forgot Password
                 </div>
-                <button>LOGIN</button>
             </form>
         </div>
     );
