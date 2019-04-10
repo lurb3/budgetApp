@@ -1,0 +1,48 @@
+.LoginForm {
+    div {
+        &:first-child {
+            margin-bottom:40px;
+        }
+        input {
+            font-family: 'Rhodium Libre', serif;
+            background:0;
+            border:0;
+            color:white;
+            border-bottom:1px solid white;  
+            font-size:20px;
+            width:400px;
+            &::placeholder {
+                color:white;
+            }
+            &:focus {
+                outline:0;
+            }
+        }
+    }
+    .SignUp {
+        color:grey;
+        button {
+            font-family: 'Rhodium Libre', serif;
+            color:grey;
+            background:0;
+            border:0;
+            margin-top:10px;
+            font-size:17px;
+            &:focus {
+                outline:0;
+            }
+        }
+    }
+}
+
+.SubmitUserData {
+    font-family: 'Rhodium Libre', serif;
+    font-size:20px;
+    color:black;
+    font-weight:bold;
+    background-color:white;
+    width:400px;
+    border:0;
+    padding:15px 15px;
+    margin-top:25px;
+}
