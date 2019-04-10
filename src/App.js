@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.scss';
 import './custom.scss';
 import './Login/Login.scss';
+import './Dashboard/Dashboard.scss';
 import Login from './Login/Login.js';
+import Dashboard from './Dashboard/Dashboard.js';
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +12,8 @@ class App extends Component {
     this.state = {
       email: '',
       password: '',
-      showResult: true,
+      showLogin: true,
+      showScreen1: false,
     }
   }
 
@@ -29,7 +32,8 @@ class App extends Component {
   submitState = () => {
     let prevState = this.state;
     if(prevState.email != '' || prevState.password != '') {
-      prevState.showResult = false;
+      prevState.showLogin = false;
+      prevState.showScreen1 = true;
       this.setState({
         prevState,
       })
@@ -42,23 +46,18 @@ class App extends Component {
     let userData;
     return (
       <div className="App">
-        <div className="Intro">
-
-          <div className="Logo">
-            <span>$</span>
-            <h1>BudgetApp</h1>
-          </div>
-          {this.state.showResult ? [
-            <Login emailChange={this.handleChangeEmail} passwordChange={this.handleChangePassword}/>,
-            <button className="SubmitUserData" onClick={this.submitState}>
-              LOGIN
-            </button>
-          ]
-            : null
-          }
-
-
-        </div>
+        {
+          this.state.showLogin ? 
+            <Login emailChange={this.handleChangeEmail} passwordChange={this.handleChangePassword} submitState={this.submitState}/>
+          : null
+        }
+        {/* #Screen 1 */}
+        {
+          this.state.showScreen1 ? [
+            <Dashboard />,
+            this.state.email, this.state.password
+          ] : null
+        }
       </div>
     );
   }

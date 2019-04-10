@@ -2,28 +2,4 @@
   position:relative;
   height:100vh;
   background-color:#22272B;
-  
-  .Intro {  
-    text-align:center;
-    width:100%;
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-  }
-  
-  .Logo {
-    span {
-      font-family: 'Secular One', sans-serif;
-      color:white;
-      font-size:100px;
-    }
-    h1 {
-      font-family: 'Rhodium Libre', serif;
-      color:white;
-      font-size:59px;
-      font-weight: lighter;
-      margin-top:0px;
-    }
-    margin-bottom:100px;
-  }
 }
