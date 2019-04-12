@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Firestore from "./Firestore/Firestore.js";
 import './App.scss';
 import './custom.scss';
 import './Login/Login.scss';
@@ -10,52 +11,54 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      username: '',
       showLogin: true,
       showScreen1: false,
     }
   }
 
-  handleChangeEmail = (evt) => {
+  handleChangeUsername = (evt) => {
     this.setState({
-      email: evt.target.value
-    })
-  }
-
-  handleChangePassword = (evt) => {
-    this.setState({
-      password: evt.target.value
+      username: evt.target.value
     })
   }
 
   submitState = () => {
     let prevState = this.state;
-    if(prevState.email != '' || prevState.password != '') {
+    let addDBitem = () => {
+      const db = Firestore.firestore();
+      db.settings({
+        timestampsInSnapshots: true
+      });
+      const userRef = db.collection('users').add({
+        username: prevState.username,
+      });
+    } 
+
+    if(prevState.username != '') {
       prevState.showLogin = false;
       prevState.showScreen1 = true;
       this.setState({
         prevState,
-      })
+      },
+      addDBitem) 
     } 
-    console.log(prevState);
-    console.log(this.state.email);
-    console.log(this.state.password);
   }
+
   render() {
     let userData;
     return (
       <div className="App">
         {
           this.state.showLogin ? 
-            <Login emailChange={this.handleChangeEmail} passwordChange={this.handleChangePassword} submitState={this.submitState}/>
+            <Login username={this.handleChangeUsername} submitState={this.submitState}/>
           : null
         }
         {/* #Screen 1 */}
         {
           this.state.showScreen1 ? [
             <Dashboard />,
-            this.state.email, this.state.password
+            this.state.username,
           ] : null
         }
       </div>
