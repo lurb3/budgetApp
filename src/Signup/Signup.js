@@ -1,15 +1,15 @@
 import React from 'react';
 
-const login = (props) =>  {
+const signup = (props) =>  {
     return (
-    <div className="Intro">
+    <div className="A">
         <div className="Logo">
             <span>$</span>
             <h1>BudgetApp</h1>
         </div>
-        <form className="LoginForm">
+        <form className="B">
             <div>
-                <input onChange={props.email} className="text-center" type="text" placeholder="EMAIL ADDRESS"></input>
+                <input type="text" placeholder="TESTE"></input>
             </div>
             
             <div>
@@ -27,4 +27,4 @@ const login = (props) =>  {
     );
 };
 
-export default login;
+export default signup;
