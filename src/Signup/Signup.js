@@ -11,7 +11,7 @@ const signup = (props) =>  {
             </div>
             <form className="Signup-Form">
                 <div>
-                    <input type="text" className="text-center" placeholder="EMAIL ADDRESS"></input>
+                    <input onChange={props.email} type="text" className="text-center" placeholder="EMAIL ADDRESS"></input>
                 </div>
                 
                 <div>
@@ -19,10 +19,10 @@ const signup = (props) =>  {
                 </div>
 
                 <div>
-                    <input onChange={props.passwordChange} className="text-center" type="password" placeholder="REPEAT PASSWORD"></input>
+                    <input className="text-center" type="password" placeholder="REPEAT PASSWORD"></input>
                 </div>
                 
-                <button className="SubmitUserData" onClick={props.submitState}>
+                <button className="RegisterNewUser" onClick={props.registerUser}>
                     Register
                 </button>
             </form>

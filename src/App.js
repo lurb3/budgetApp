@@ -60,21 +60,7 @@ class App extends Component {
       const userRef = db.collection('users').add({
         email: prevState.email,
       });*/
-      /*Firestore.auth().createUserWithEmailAndPassword(prevState.email, prevState.password).catch(function(error) { //Create new user
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        
-      });*/
-
-      Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password) //Check if use exists
-      .then(function(firebaseUser) {
-          console.log("Signed In"); 
-      })
-      .catch(function(error) {
-        console.log("User Doesn't exists"); 
-      });
+      /**/
     } 
 
     if(prevState.email !== '') {
@@ -87,6 +73,25 @@ class App extends Component {
     } 
   }
 
+  registerNewUser = (e) => {
+    e.preventDefault();
+    let prevState = this.state;
+    Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password) //Check if use exists
+    .then(function(firebaseUser) {
+        console.log("User already exists"); 
+    })
+    .catch(function(error) {
+      Firestore.auth().createUserWithEmailAndPassword(prevState.email, prevState.password).catch(function(error) { //Create new user
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        
+      });
+    });
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -94,8 +99,11 @@ class App extends Component {
         {
           this.state.showRegister ? [
             <Signup
+              email={this.handleChangeEmail}
+              passwordChange={this.handleChangePassword}
               closeSignupScreen = {this.closeSignupScreen}
               closePopup = {this.closeSignupScreen}
+              registerUser = {this.registerNewUser}
             />
           ] : null
         }
