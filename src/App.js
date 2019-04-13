@@ -32,6 +32,24 @@ class App extends Component {
     })
   }
 
+  showRegister = () => {
+    let prevState = this.state;
+    prevState.showRegister = true;
+    prevState.showLogin = false;
+    this.setState({
+      prevState,
+    })
+  }
+
+  closeSignupScreen = () => {
+    let prevState = this.state;
+    prevState.showRegister = false;
+    prevState.showLogin = true;
+    this.setState({
+      prevState,
+    })
+  }
+
   submitState = () => {
     let prevState = this.state;
     let addDBitem = () => {
@@ -59,7 +77,7 @@ class App extends Component {
       });
     } 
 
-    if(prevState.email != '') {
+    if(prevState.email !== '') {
       prevState.showLogin = false;
       prevState.showScreen1 = true;
       this.setState({
@@ -70,20 +88,25 @@ class App extends Component {
   }
 
   render() {
-    let userData;
     return (
       <div className="App">
         {/* #Register Screen */}
         {
-          this.state.showLogin ? [
-            <Signup/>
+          this.state.showRegister ? [
+            <Signup
+              closeSignupScreen = {this.closeSignupScreen}
+            />
           ] : null
         }
 
         {/* #Login Screen */}
         {
           this.state.showLogin ? 
-            <Login email={this.handleChangeEmail} passwordChange={this.handleChangePassword} submitState={this.submitState}/>
+            <Login
+              email={this.handleChangeEmail}
+              passwordChange={this.handleChangePassword}
+              submitState={this.submitState}
+              signUpClick={this.showRegister}/>
           : null
         }
 

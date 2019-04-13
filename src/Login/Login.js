@@ -16,7 +16,7 @@ const login = (props) =>  {
                 <input onChange={props.passwordChange} className="text-center" type="password" placeholder="PASSWORD"></input>
             </div>
             <div className="SignUp">
-                <button>Sign Up</button> | <button>Forgot Password</button>
+                <button onClick={props.signUpClick}>Sign Up</button> | <button>Forgot Password</button>
             </div>
             
             <button className="SubmitUserData" onClick={props.submitState}>

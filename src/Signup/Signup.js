@@ -5,7 +5,7 @@ const signup = (props) =>  {
     <div className="Signup">
         <div className="Bloc">
             <div className="Singup-Header text-center">
-                <span className="Close-Singup">X</span>
+                <span className="Close-Singup" onClick={props.closeSignupScreen}>X</span>
                 <h3>SIGN UP</h3>
             </div>
             <form className="Signup-Form">
