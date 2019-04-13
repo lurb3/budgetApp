@@ -3,6 +3,7 @@ import React from 'react';
 const signup = (props) =>  {
     return (
     <div className="Signup">
+        <div className="closePopup" onClick={props.closePopup}></div>
         <div className="Bloc">
             <div className="Singup-Header text-center">
                 <span className="Close-Singup" onClick={props.closeSignupScreen}>X</span>
@@ -18,7 +19,7 @@ const signup = (props) =>  {
                 </div>
 
                 <div>
-                    <input onChange={props.passwordChange} className="text-center" type="password" placeholder="VERIFY PASSWORD"></input>
+                    <input onChange={props.passwordChange} className="text-center" type="password" placeholder="REPEAT PASSWORD"></input>
                 </div>
                 
                 <button className="SubmitUserData" onClick={props.submitState}>

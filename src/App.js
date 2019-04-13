@@ -95,6 +95,7 @@ class App extends Component {
           this.state.showRegister ? [
             <Signup
               closeSignupScreen = {this.closeSignupScreen}
+              closePopup = {this.closeSignupScreen}
             />
           ] : null
         }
