@@ -14,9 +14,9 @@ class App extends Component {
     super(props);
     this.state = {
       email: '',
-      showLogin: false,
+      showLogin: true,
       showScreen1: false,
-      showRegister: true,
+      showRegister: false,
     }
   }
 
@@ -73,21 +73,25 @@ class App extends Component {
     let userData;
     return (
       <div className="App">
+        {/* #Register Screen */}
+        {
+          this.state.showLogin ? [
+            <Signup/>
+          ] : null
+        }
+
+        {/* #Login Screen */}
         {
           this.state.showLogin ? 
             <Login email={this.handleChangeEmail} passwordChange={this.handleChangePassword} submitState={this.submitState}/>
           : null
         }
-        {/* #Screen 1 */}
+
+        {/* #Dashboard Screen */}
         {
           this.state.showScreen1 ? [
             <Dashboard />,
             this.state.email,
-          ] : null
-        }
-        {
-          this.state.showRegister ? [
-            <Signup/>
           ] : null
         }
       </div>

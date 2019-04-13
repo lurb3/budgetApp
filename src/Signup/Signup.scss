@@ -1,0 +1,94 @@
+.Signup {
+
+    z-index:999;
+    min-height:100%;
+    min-width:100%;
+    background-color:rgba(0,0,0,0.7);
+    position:relative;
+
+    .Bloc {
+
+        background-color:#F3F3F3;
+        padding:10px 40px 40px 40px;
+        border-radius:25px;
+        width:auto;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+
+        .Singup-Header {
+            .Close-Singup {
+
+                display:block;
+                font-family: 'Open Sans', serif;
+                color:#22272B;
+                font-weight:lighter;
+                font-size:30px;
+                margin-bottom:20px;
+                transition: 0.2s ease-in-out;
+
+                &:hover {
+                    transition: 0.2s ease-in-out;
+                    transform: scale(1.1, 1.1);
+                    font-weight: bold;
+                    cursor:pointer;
+                }
+
+            }
+            h3 {
+
+                font-family: 'Open Sans', serif;
+                font-size:30px;
+                font-weight:lighter;
+                margin-bottom:50px;
+
+            }
+        }
+
+    }
+
+    .Signup-Form {
+        
+        div {
+
+            margin-bottom:40px;
+        
+            input {
+                font-family: 'Rhodium Libre', serif;
+                background:0;
+                border:0;
+                color:#22272B;
+                border-bottom:1px solid #22272B;  
+                font-size:20px;
+                width:400px;
+                &::placeholder {
+                    color:#22272B;
+                }
+                &:focus {
+                    outline:0;
+                }
+            }
+
+        }
+
+        .SubmitUserData {
+            font-family: 'Rhodium Libre', serif;
+            font-size:20px;
+            color:white;
+            font-weight:bold;
+            background-color:#22272B;
+            width:400px;
+            border:0;
+            padding:15px 15px;
+            margin-top:25px;
+            transition: 0.2s ease-out;
+            &:hover {
+                transition: 0.2s ease-in-out;
+                transform: scale(1.1, 1.1);
+                box-shadow: 2px 2px 23px -3px rgba(0,0,0,0.75);
+            }
+        }
+    }
+
+}
