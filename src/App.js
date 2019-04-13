@@ -50,7 +50,8 @@ class App extends Component {
     })
   }
 
-  submitState = () => {
+  submitState = (e) => {
+    e.preventDefault();
     let prevState = this.state;
     let addDBitem = () => {
       /*const db = Firestore.firestore();
@@ -60,16 +61,16 @@ class App extends Component {
       const userRef = db.collection('users').add({
         email: prevState.email,
       });*/
-      /**/
     } 
-
     if(prevState.email !== '') {
-      prevState.showLogin = false;
-      prevState.showScreen1 = true;
-      this.setState({
-        prevState,
-      },
-      addDBitem) 
+      Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password) //Check if use exists
+      .then(function(firebaseUser) {
+        prevState.showLogin = false;
+        prevState.showScreen1 = true;
+      })
+      .catch(function(error) {
+        console.log("user doesnt exists")
+      });
     } 
   }
 
@@ -89,6 +90,12 @@ class App extends Component {
         
       });
     });
+    this.setState({
+      email: '',
+      showLogin: true,
+      showScreen1: false,
+      showRegister: false,
+    })
 
   }
 
