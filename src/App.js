@@ -8,6 +8,7 @@ import './Signup/Signup.scss';
 import Login from './Login/Login.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import Signup from './Signup/Signup.js';
+import { textSpanContainsTextSpan } from 'typescript';
 
 class App extends Component {
   constructor(props) {
@@ -53,25 +54,23 @@ class App extends Component {
   submitState = (e) => {
     e.preventDefault();
     let prevState = this.state;
-    let addDBitem = () => {
-      /*const db = Firestore.firestore();
-      db.settings({
-        timestampsInSnapshots: true
-      });
-      const userRef = db.collection('users').add({
-        email: prevState.email,
-      });*/
-    } 
     if(prevState.email !== '') {
-      Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password) //Check if use exists
-      .then(function(firebaseUser) {
+      Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password)
+      .then(function() {
         prevState.showLogin = false;
         prevState.showScreen1 = true;
+        updateScreenState();
       })
-      .catch(function(error) {
-        console.log("user doesnt exists")
-      });
-    } 
+      .catch(function() {
+        console.log("User Doesnt' Exists")
+      })
+
+      let updateScreenState = () => {
+        this.setState({
+          prevState,
+        })
+      }
+    }
   }
 
   registerNewUser = (e) => {
