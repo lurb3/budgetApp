@@ -8,7 +8,6 @@ import './Signup/Signup.scss';
 import Login from './Login/Login.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import Signup from './Signup/Signup.js';
-import { textSpanContainsTextSpan } from 'typescript';
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +50,31 @@ class App extends Component {
     })
   }
 
+  showThings = () => {
+    let prevState = this.state;
+    const db = Firestore.firestore();
+    var cityRef = db.collection('teste');
+    var query = cityRef.get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }
+  
+      snapshot.forEach(doc => {
+        prevState.data = doc.data;
+        console.log(doc.data);
+      });
+    })
+    .catch(err => {
+      console.log('Error getting documents', err);
+    });
+    this.setState({
+      prevState
+    })
+    console.log(prevState)
+  }
+
   submitState = (e) => {
     e.preventDefault();
     let prevState = this.state;
@@ -63,6 +87,7 @@ class App extends Component {
       })
       .catch(function() {
         console.log("User Doesnt' Exists")
+        //document.getElementById("loginWarning").style.display = "block";
       })
 
       let updateScreenState = () => {
@@ -70,6 +95,7 @@ class App extends Component {
           prevState,
         })
       }
+      showThings();
     }
   }
 
@@ -121,14 +147,17 @@ class App extends Component {
               email={this.handleChangeEmail}
               passwordChange={this.handleChangePassword}
               submitState={this.submitState}
-              signUpClick={this.showRegister}/>
+              signUpClick={this.showRegister}
+              ref={this.warning}/>
           : null
         }
 
         {/* #Dashboard Screen */}
         {
           this.state.showScreen1 ? [
+
             <Dashboard />,
+
             this.state.email,
           ] : null
         }

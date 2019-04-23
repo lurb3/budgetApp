@@ -11,6 +11,10 @@ const dashboard = (props) =>  {
         <div className="CurrentStats">
             <h3>Current Status</h3>
         </div>
+
+        <div value={props.text}>
+
+        </div>
     </div>
     );
 };

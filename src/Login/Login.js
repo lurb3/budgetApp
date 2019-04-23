@@ -15,6 +15,11 @@ const login = (props) =>  {
             <div>
                 <input onChange={props.passwordChange} className="text-center" type="password" placeholder="PASSWORD"></input>
             </div>
+
+            <div>
+                <p className="loginWarning mt-3" ref={props.warning}>Incorrect user or password</p>
+            </div>
+
             <div className="SignUp">
                 <button onClick={props.signUpClick}>Sign Up</button> | <button>Forgot Password</button>
             </div>
