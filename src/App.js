@@ -50,31 +50,6 @@ class App extends Component {
     })
   }
 
-  showThings = () => {
-    let prevState = this.state;
-    const db = Firestore.firestore();
-    var cityRef = db.collection('teste');
-    var query = cityRef.get()
-    .then(snapshot => {
-      if (snapshot.empty) {
-        console.log('No matching documents.');
-        return;
-      }
-  
-      snapshot.forEach(doc => {
-        prevState.data = doc.data;
-        console.log(doc.data);
-      });
-    })
-    .catch(err => {
-      console.log('Error getting documents', err);
-    });
-    this.setState({
-      prevState
-    })
-    console.log(prevState)
-  }
-
   submitState = (e) => {
     e.preventDefault();
     let prevState = this.state;
@@ -95,13 +70,14 @@ class App extends Component {
           prevState,
         })
       }
-      showThings();
     }
+    
   }
 
   registerNewUser = (e) => {
     e.preventDefault();
     let prevState = this.state;
+    const db = Firestore.firestore();
     Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password) //Check if use exists
     .then(function(firebaseUser) {
         console.log("User already exists"); 
@@ -112,9 +88,17 @@ class App extends Component {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        
       });
     });
+
+    let data = {
+      'email' : prevState.email
+    }
+
+    db.collection('users').doc(prevState.email).set(data);
+    db.collection('users').doc(prevState.email).collection('spents').doc('car').set('carro');
+
+
     this.setState({
       email: '',
       showLogin: true,
@@ -122,6 +106,32 @@ class App extends Component {
       showRegister: false,
     })
 
+  }
+
+  teste = () => {
+    const db = Firestore.firestore();
+    db.collection("users").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+         // console.log(`${doc.id} => ${doc.data().email}`);
+      });
+    });
+
+    let a = db.collection('users').doc('gustavo.gigante.@gmail.com').collection('spents').doc('teste');
+    console.log(a);
+
+    var citiesRef = db.collection('users').doc('gustavo.gigante.@gmail.com').collection('spents');
+    var allCities = citiesRef.get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log(doc.id, '=>', doc.data());
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+    //TODO: Restructure data structure...
   }
 
   render() {
@@ -142,14 +152,15 @@ class App extends Component {
 
         {/* #Login Screen */}
         {
-          this.state.showLogin ? 
+          this.state.showLogin ?  [
+            this.teste(),
             <Login
               email={this.handleChangeEmail}
               passwordChange={this.handleChangePassword}
               submitState={this.submitState}
               signUpClick={this.showRegister}
               ref={this.warning}/>
-          : null
+          ]: null
         }
 
         {/* #Dashboard Screen */}
@@ -157,7 +168,6 @@ class App extends Component {
           this.state.showScreen1 ? [
 
             <Dashboard />,
-
             this.state.email,
           ] : null
         }
