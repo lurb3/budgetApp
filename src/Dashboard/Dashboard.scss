@@ -1,32 +1,119 @@
 .Dashboard{
-
-    .Logo {
-        text-align:center;
-        span {
-            display:inline;
-            color:white;
-            font-family: 'Secular One', sans-serif;
-            font-size:50px;
-            margin-right:20px;
-        }
-        h1 {
-            display:inline;
-            color:white;
-            font-family: 'Rhodium Libre', serif;
-            font-size:30px;
-        }
-    }
-
-    .CurrentStats {
-        text-align: center;
-        h3 {
-            font-family: 'Open sans', serif;
-            color:white;
-            font-size:20px;
-            font-weight:bold;
-            background-color:rgba(0, 0, 0, 0.185);
-            width:auto;
-        }
-    }
-
+	.Logo {
+		text-align:center;
+		span {
+			display:inline;
+			color:white;
+			font-family: 'Secular One', sans-serif;
+			font-size:50px;
+			margin-right:20px;
+		}
+		h1 {
+			display:inline;
+			color:white;
+			font-family: 'Rhodium Libre', serif;
+			font-size:30px;
+		}
+	}
+	.CurrentStats, .LatestStatus {
+		text-align: center;
+		margin-top:30px;
+		margin-bottom:30px;
+		h3 {
+			display:inline;
+			font-size:20px;
+			font-weight:700;
+			font-family: 'Open Sans', sans-serif;
+			color:white;
+			background-color:#32363A;
+			padding:10px;
+			border-radius:30px;
+		}
+	}
+	.TotalBudget, .LatestTransactions {
+		margin-bottom:30px;
+		text-align: center;
+		h3 {
+			display:inline;
+			font-size:45px;
+			font-weight:300;
+			font-family: 'Open Sans', sans-serif;
+			color:white;
+		}
+	}
+	.Income, .Outcome {
+		font-family: 'Open Sans', sans-serif;
+		color:white;
+		font-weight:300;
+		h3 {
+			font-weight:300;
+			font-size:35px;
+		}
+		p {
+			font-size:20px;
+		}
+	}
+	.Transactions {
+		font-family: 'Open Sans', sans-serif;
+		color:white;
+		text-align:center;
+		border-bottom:1px solid white;
+		margin-bottom:10px;
+		padding-bottom:10px;
+		padding-top:10px;
+		.TransactionItem {
+			h4 {
+				font-size:25px;
+				font-weight:300;
+				margin:0;
+				padding:0;
+			}
+			p {
+				font-size:15px;
+				font-weight:700
+			}
+		}
+		.TransactionCost {
+			p {
+				font-size:25px;
+				font-weight: 300;
+			}
+		}
+	}
+	.LoadTransactions {
+		p {
+			font-family: 'Open Sans', sans-serif;
+			color:white;
+			font-size:15px;
+			font-weight:700;
+			margin:0;
+			padding:0;
+			margin:auto;
+		}
+	}
+	.BottomMenu {
+		text-align: center;
+		padding-top:100px;
+		font-family: 'Open Sans', sans-serif;
+		color:white;
+		margin:auto;
+		.Home {
+			font-family: 'Open Sans', sans-serif;
+			font-size:25px;
+			display:inline;
+		}
+		.NewSpend {
+			display:inline;
+			font-family: 'Open Sans', sans-serif;
+			font-size:100px;
+			font-weight:800;
+			margin-left:10px;
+			margin-right:10px;
+		}
+		.Logout {
+			font-family: 'Open Sans', sans-serif;
+			font-size:25px;
+			display:inline;
+		}
+	}
 }
