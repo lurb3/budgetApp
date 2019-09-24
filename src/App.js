@@ -55,8 +55,12 @@ class App extends Component {
 		if(prevState.email !== '') {
 			Firestore.auth().signInWithEmailAndPassword(prevState.email, prevState.password)
 			.then(function() {
+				let getUserBudget = () => {
+					return 2
+				}
 				prevState.showLogin = false;
 				prevState.showScreen1 = true;
+				prevState.Budget = getUserBudget();
 				updateScreenState();
 			})
 			.catch(function() {
@@ -75,6 +79,16 @@ class App extends Component {
 	}
 
 	registerNewUser = (e) => {
+		let getCurrentDate = () => {
+			let today = new Date();
+			let dd = String(today.getDate()).padStart(2, '0');
+			let mm = String(today.getMonth() + 1).padStart(2, '0');
+			let yyyy = today.getFullYear();
+	
+			today = mm + '/' + dd + '/' + yyyy;
+			return today;
+		}
+
 		e.preventDefault();
 		let prevState = this.state;
 		const db = Firestore.firestore();
@@ -85,7 +99,8 @@ class App extends Component {
 		.catch(function(error) {
 			Firestore.auth().createUserWithEmailAndPassword(prevState.email, prevState.password);
 			let data = {
-				'email' : prevState.email
+				'login' : prevState.email,
+				'date': getCurrentDate(),
 			}
 			db.collection('users').doc(prevState.email).set(data);
 		});
@@ -126,8 +141,9 @@ class App extends Component {
 
 				{/* #Dashboard Screen */
 					this.state.showScreen1 ? [
-					<Dashboard />,
-						this.state.email,
+					<Dashboard
+						totalBudget={this.state.Budget}
+					/>
 					] : null
 				}
 			</div>

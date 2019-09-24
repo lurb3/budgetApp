@@ -14,7 +14,7 @@ const dashboard = (props) =>  {
 				</div>
 
 				<div className="TotalBudget">
-					<h3>Total Budget: 1000 €</h3>
+					<h3>Total Budget: <span>{props.totalBudget}</span> €</h3>
 				</div>
 
 				<div className="row">
