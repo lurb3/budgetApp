@@ -38,6 +38,15 @@ class App extends Component {
 		this.setState({
 			prevState,
 		})
+
+
+		fetch("https://gustavomonteiro.pt/budgetapp/api/getUserData.php")
+		.then(res => res.json())
+		.then(text => console.log(text))
+
+
+
+
 	}
 
 	closeSignupScreen = () => {
