@@ -42,7 +42,11 @@ class App extends Component {
 
 		fetch("https://gustavomonteiro.pt/budgetapp/api/getUserData.php")
 		.then(res => res.json())
-		.then(text => console.log(text))
+		.then(function(data){
+			let login = data.login;
+			console.log(login);
+		})
+		//.then(text => console.log(text))
 
 
 
