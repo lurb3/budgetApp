@@ -66,11 +66,12 @@ const dashboard = (props) =>  {
 				<div className="row LoadTransactions">
 					<p>Load more transactions</p>
 				</div>
-
-				<div className="row BottomMenu">
-					<div className="Home">Home</div>
-					<div className="NewSpend">+</div>
-					<div className="Logout">Logout</div>
+				<div className="row">
+					<div className="row BottomMenu">
+						<div className="Home">Home</div>
+						<div className="NewSpend">+</div>
+						<div className="Logout">Logout</div>
+					</div>
 				</div>
 			</div>
 		</div>
