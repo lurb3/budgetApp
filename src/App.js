@@ -39,11 +39,17 @@ class App extends Component {
 			prevState,
 		})
 
+		let data = {
+			userid: 1,
+		};
 
-		fetch("https://gustavomonteiro.pt/budgetapp/api/getUserData.php")
+		fetch("https://gustavomonteiro.pt/budgetapp/api/getUserData.php", {
+			method: 'post',
+			body: JSON.stringify(data),
+		})
 		.then(res => res.json())
 		.then(function(data){
-			let login = data.login;
+			let login = data;
 			console.log(login);
 		})
 		//.then(text => console.log(text))
