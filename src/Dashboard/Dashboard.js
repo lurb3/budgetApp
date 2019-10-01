@@ -9,6 +9,10 @@ const dashboard = (props) =>  {
 					<h1>BudgetApp</h1>
 				</div>
 
+				<div className="">
+					<button onClick={props.userDataClick}>Check Data</button>
+            	</div>
+
 				<div className="CurrentStats">
 					<h3>Current Status</h3>
 				</div>

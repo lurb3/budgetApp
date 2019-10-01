@@ -5,9 +5,11 @@ import './custom.scss';
 import './Login/Login.scss';
 import './Dashboard/Dashboard.scss';
 import './Signup/Signup.scss';
+import './UserData/UserData.scss';
 import Login from './Login/Login.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import Signup from './Signup/Signup.js';
+import UserData from './UserData/UserData.js';
 
 class App extends Component {
 	constructor(props) {
@@ -28,6 +30,12 @@ class App extends Component {
 	handleChangePassword = (evt) => {
 		this.setState({
 			password: evt.target.value
+		})
+	}
+
+	handleChangeIncome = (evt) => {
+		this.setState({
+			income: evt.target.value
 		})
 	}
 
@@ -54,18 +62,47 @@ class App extends Component {
 		})
 		//.then(text => console.log(text))
 
-
-
-
 	}
 
-	closeSignupScreen = () => {
+	showUserDataScreen = () => {
 		let prevState = this.state;
-		prevState.showRegister = false;
-		prevState.showLogin = true;
+		prevState.showUserDataScreen = true;
 		this.setState({
 			prevState,
 		})
+	}
+
+	closePopup = (screen) => {
+		let prevState = this.state;
+		if(screen === 'signup') { //REFACTOR THIS ASAP
+			prevState.showRegister = false;
+			prevState.showLogin = true;
+			this.setState({
+				prevState,
+			})
+		} 
+		if(screen === 'userData') {
+			prevState.showUserDataScreen = false;
+			this.setState({
+				prevState,
+			})
+		}
+	}
+
+	saveUserData = () => {
+		let prevState = this.state;
+		let data = {
+			income: 5000,//prevState.income,
+		}
+		fetch("https://gustavomonteiro.pt/budgetapp/api/saveUserData.php", {
+			method: 'put',
+			body: JSON.stringify(data),
+		})
+		/*.then(res => res.json())
+		.then(function(data){
+			let login = data;
+			console.log(login);
+		})*/
 	}
 
 	submitState = (e) => {
@@ -140,8 +177,8 @@ class App extends Component {
 						<Signup
 							email={this.handleChangeEmail}
 							passwordChange={this.handleChangePassword}
-							closeSignupScreen = {this.closeSignupScreen}
-							closePopup = {this.closeSignupScreen}
+							closeSignupScreen = {() => this.closePopup('signup')}
+							closePopup = {() => this.closePopup('signup')}
 							registerUser = {this.registerNewUser}
 						/>
 					] : null
@@ -160,9 +197,18 @@ class App extends Component {
 
 				{/* #Dashboard Screen */
 					this.state.showScreen1 ? [
-					<Dashboard
-						totalBudget={this.state.Budget}
-					/>
+						this.state.showUserDataScreen ? [
+						<UserData
+							closePopup = {() => this.closePopup('userData')}
+							closeUserDataScreen = {() => this.closePopup('userData')}
+							income = {this.handleChangeIncome}
+							saveData = {this.saveUserData}
+						/>
+						] : null,
+						<Dashboard
+							totalBudget = {this.state.Budget}
+							userDataClick = {this.showUserDataScreen} 
+						/>
 					] : null
 				}
 			</div>

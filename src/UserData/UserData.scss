@@ -8,7 +8,7 @@
       opacity:1;
     }
   }
-.Signup {
+.userdata {
     animation: 0.3s ease-out 0s 1 popInAnimation;
     z-index:999;
     min-height:100%;
@@ -31,8 +31,8 @@
         left:50%;
         transform: translate(-50%, -50%);
 
-        .Signup-Header {
-            .Close-Signup {
+        .userdata-Header {
+            .Close-userdata {
 
                 display:block;
                 font-family: 'Rajdhani', sans-serif;
@@ -62,7 +62,7 @@
 
     }
 
-    .Signup-Form {
+    .userdata-Form {
         
         div {
 

@@ -5,8 +5,8 @@ const signup = (props) =>  {
     <div className="Signup">
         <div className="closePopup" onClick={props.closePopup}></div>
         <div className="Bloc">
-            <div className="Singup-Header text-center">
-                <span className="Close-Singup" onClick={props.closeSignupScreen}>X</span>
+            <div className="Signup-Header text-center">
+                <span className="Close-Signup" onClick={props.closeSignupScreen}>X</span>
                 <h3>SIGN UP</h3>
             </div>
             <form className="Signup-Form">
