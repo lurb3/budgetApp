@@ -89,13 +89,14 @@ class App extends Component {
 		}
 	}
 
-	saveUserData = () => {
+	saveUserData = (e) => {
+		e.preventDefault();
 		let prevState = this.state;
 		let data = {
-			income: 5000,//prevState.income,
+			income: prevState.income,
 		}
 		fetch("https://gustavomonteiro.pt/budgetapp/api/saveUserData.php", {
-			method: 'put',
+			method: 'POST',
 			body: JSON.stringify(data),
 		})
 		/*.then(res => res.json())
