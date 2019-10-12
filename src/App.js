@@ -67,6 +67,7 @@ class App extends Component {
 	showUserDataScreen = () => {
 		let prevState = this.state;
 		prevState.showUserDataScreen = true;
+		prevState.userDataVisible = true;
 		this.setState({
 			prevState,
 		})
@@ -83,6 +84,7 @@ class App extends Component {
 		} 
 		if(screen === 'userData') {
 			prevState.showUserDataScreen = false;
+			prevState.userDataVisible = false;
 			this.setState({
 				prevState,
 			})
@@ -117,6 +119,7 @@ class App extends Component {
 				}
 				prevState.showLogin = false;
 				prevState.showScreen1 = true;
+				prevState.userDataVisible = false;
 				prevState.Budget = getUserBudget();
 				updateScreenState();
 			})
@@ -166,6 +169,7 @@ class App extends Component {
 			email: '',
 			showLogin: true,
 			showScreen1: false,
+			userDataVisible: false,
 			showRegister: false,
 		});
 	}
@@ -198,14 +202,13 @@ class App extends Component {
 
 				{/* #Dashboard Screen */
 					this.state.showScreen1 ? [
-						this.state.showUserDataScreen ? [
 						<UserData
+							visible = {this.state.userDataVisible}
 							closePopup = {() => this.closePopup('userData')}
 							closeUserDataScreen = {() => this.closePopup('userData')}
 							income = {this.handleChangeIncome}
 							saveData = {this.saveUserData}
-						/>
-						] : null,
+						/>,
 						<Dashboard
 							totalBudget = {this.state.Budget}
 							userDataClick = {this.showUserDataScreen} 
