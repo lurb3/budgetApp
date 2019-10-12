@@ -11,6 +11,10 @@ const signup = (props) =>  {
             </div>
             <form className="Signup-Form">
                 <div>
+                    <input onChange={props.login} type="text" className="text-center" placeholder="LOGIN"></input>
+                </div>
+
+                <div>
                     <input onChange={props.email} type="text" className="text-center" placeholder="EMAIL ADDRESS"></input>
                 </div>
                 

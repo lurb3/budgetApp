@@ -21,6 +21,12 @@ class App extends Component {
 		}
 	}
 
+	handleChangeLogin = (evt) => {
+		this.setState({
+			login: evt.target.value
+		})
+	}
+
 	handleChangeEmail = (evt) => {
 		this.setState({
 			email: evt.target.value
@@ -45,23 +51,7 @@ class App extends Component {
 		prevState.showLogin = false;
 		this.setState({
 			prevState,
-		})
-
-		let data = {
-			userid: 1,
-		};
-
-		fetch("https://gustavomonteiro.pt/budgetapp/api/getUserData.php", {
-			method: 'post',
-			body: JSON.stringify(data),
-		})
-		.then(res => res.json())
-		.then(function(data){
-			let login = data;
-			console.log(login);
-		})
-		//.then(text => console.log(text))
-
+		});
 	}
 
 	showUserDataScreen = () => {
@@ -165,6 +155,7 @@ class App extends Component {
 			db.collection('users').doc(prevState.email).set(data);
 
 			let newUserData = {
+				userlogin: prevState.login,
 				useremail: prevState.email,
 			}
 			fetch("https://gustavomonteiro.pt/budgetapp/api/saveNewUser.php", {
@@ -174,6 +165,7 @@ class App extends Component {
 		});
 
 		this.setState({
+			login:'',
 			email: '',
 			showLogin: true,
 			showScreen1: false,
@@ -188,6 +180,7 @@ class App extends Component {
 				{/* #Register Screen */
 					this.state.showRegister ? [
 						<Signup
+							login={this.handleChangeLogin}
 							email={this.handleChangeEmail}
 							passwordChange={this.handleChangePassword}
 							closeSignupScreen = {() => this.closePopup('signup')}
