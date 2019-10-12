@@ -163,6 +163,14 @@ class App extends Component {
 				'date': getCurrentDate(),
 			}
 			db.collection('users').doc(prevState.email).set(data);
+
+			let newUserData = {
+				useremail: prevState.email,
+			}
+			fetch("https://gustavomonteiro.pt/budgetapp/api/saveNewUser.php", {
+				method: 'POST',
+				body: JSON.stringify(newUserData),
+			})
 		});
 
 		this.setState({
