@@ -45,6 +45,18 @@ class App extends Component {
 		})
 	}
 
+	handleFormClick = () => {
+		let prevState = this.state;
+		if(prevState.focused) {
+			prevState.focused = false;
+		} else {
+			prevState.focused = true;
+		}
+		this.setState({
+			prevState,
+		})
+	}
+
 	showRegister = () => {
 		let prevState = this.state;
 		prevState.showRegister = true;
@@ -193,6 +205,8 @@ class App extends Component {
 				{/* #Login Screen */
 					this.state.showLogin ?  [
 					<Login
+						formClick = {this.handleFormClick}
+						focused = {this.state.focused}
 						email={this.handleChangeEmail}
 						passwordChange={this.handleChangePassword}
 						submitState={this.submitState}

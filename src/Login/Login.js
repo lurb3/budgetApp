@@ -8,7 +8,8 @@ const login = (props) =>  {
             <h1>BudgetApp</h1>
         </div>
         <form className="LoginForm">
-            <div>
+            <div className="FormGroup" onClick={props.formClick}>
+                <label className={props.focused ? 'FormLabel focused' : 'FormLabel'}>What is your name?</label>
                 <input onChange={props.email} className="text-center" type="text" placeholder="EMAIL ADDRESS"></input>
             </div>
             

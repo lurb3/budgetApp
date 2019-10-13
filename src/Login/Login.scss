@@ -28,6 +28,30 @@
 
     .LoginForm {
 
+        .FormGroup {
+            position:relative;
+            background-color:white;
+            width:400px;
+            margin:auto;
+            .FormLabel {
+                position:absolute;
+                top:50%;
+                transform: translateY(-50%);
+                cursor:text;
+                font-size:15px;
+                color:black;
+                padding-left:10px;
+                transition: all 0.3s;
+            }
+            .focused {
+                font-size:10px;
+                top:5px;
+                transition: all 0.3s;
+            }
+        }
+
+
+
         div {
 
             &:first-child {
