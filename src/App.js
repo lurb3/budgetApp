@@ -205,8 +205,8 @@ class App extends Component {
 				{/* #Login Screen */
 					this.state.showLogin ?  [
 					<Login
-						formClick = {this.handleFormClick}
-						focused = {this.state.focused}
+						/*formClick = {this.handleFormClick}
+						focused = {this.state.focused}*/
 						email={this.handleChangeEmail}
 						passwordChange={this.handleChangePassword}
 						submitState={this.submitState}
