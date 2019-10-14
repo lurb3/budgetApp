@@ -13,6 +13,10 @@ const userdata = (props) =>  {
                     <div>
                         <input onChange={props.income} type="text" className="text-center" placeholder="INCOME / MONTH"></input>
                     </div>
+
+                    <div>
+                        <input onChange={props.outcome} type="text" className="text-center" placeholder="OUTCOME / MONTH"></input>
+                    </div>
                     
                     <div>
                         <input onChange={props.totalAmount} type="text" className="text-center" placeholder="TOTAL BUDGET"></input>

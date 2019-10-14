@@ -45,6 +45,12 @@ class App extends Component {
 		})
 	}
 
+	handleChangeOutcome = (evt) => {
+		this.setState({
+			outcome: evt.target.value
+		})
+	}
+
 	handleChangeTotalAmount = (evt) => {
 		this.setState({
 			totalAmount: evt.target.value
@@ -105,6 +111,7 @@ class App extends Component {
 		let data = {
 			email: prevState.email,
 			income: prevState.income,
+			outcome: prevState.outcome,
 			totalAmount: prevState.totalAmount,
 		}
 		fetch("https://gustavomonteiro.pt/budgetapp/api/saveUserData.php", {
@@ -225,6 +232,7 @@ class App extends Component {
 							closePopup = {() => this.closePopup('userData')}
 							closeUserDataScreen = {() => this.closePopup('userData')}
 							income = {this.handleChangeIncome}
+							outcome = {this.handleChangeOutcome}
 							totalAmount = {this.handleChangeTotalAmount}
 							saveData = {this.saveUserData}
 						/>,

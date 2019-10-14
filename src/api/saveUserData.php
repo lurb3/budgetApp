@@ -9,6 +9,7 @@
 
 	$userDataEmail = $userData['email'];
 	$userDataIncome = $userData['income'];
+	$userDateOutcome = $userData['outcome'];
 	$userDataTotalAmount = $userData['totalAmount'];
 
 	$sql = "SELECT email FROM userdata WHERE email LIKE '$userDataEmail'";
@@ -16,12 +17,12 @@
 
 	if ($result->num_rows > 0) {
 
-		$sql2 = "UPDATE userdata SET currentIncome = $userDataIncome, currentOutcome = '', totalBudget = $userDataTotalAmount, updateDate = '$currentDate' WHERE email like '$userDataEmail'";
+		$sql2 = "UPDATE userdata SET currentIncome = $userDataIncome, currentOutcome = $userDateOutcome, totalBudget = $userDataTotalAmount, updateDate = '$currentDate' WHERE email like '$userDataEmail'";
 
 		$result = $conn->query($sql2);
 
 	} else {
-		$sql3 = "INSERT INTO userdata (currentIncome, currentOutcome, email, totalBudget, insertDate, updateDate) VALUES ($userDataIncome, '', '$userDataEmail', $userDataTotalAmount, '$currentDate', '$currentDate')";
+		$sql3 = "INSERT INTO userdata (currentIncome, currentOutcome, email, totalBudget, insertDate, updateDate) VALUES ($userDataIncome, $userDateOutcome, '$userDataEmail', $userDataTotalAmount, '$currentDate', '$currentDate')";
 
 		$result = $conn->query($sql3);
 	}
