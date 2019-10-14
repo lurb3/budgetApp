@@ -2,9 +2,32 @@
 
 	require_once('connectDB.php');
 
-	$income = json_decode(file_get_contents('php://input'), true);
-	$incomeTemp = $income['income'];
-	$sql = "INSERT INTO spends (name, amount, insertdate, quantity, userid) VALUES ('teste', $incomeTemp, '2019-09-26', 2, 1)";
+	date_default_timezone_set('Europe/Lisbon');
+	$currentDate = date("Y-m-d");
+
+	$userData = json_decode(file_get_contents('php://input'), true);
+
+	$userDataEmail = $userData['email'];
+	$userDataIncome = $userData['income'];
+	$userDataTotalAmount = $userData['totalAmount'];
+
+	$sql = "SELECT email FROM userdata WHERE email LIKE '$userDataEmail'";
 	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+
+		$sql2 = "UPDATE userdata SET currentIncome = $userDataIncome, currentOutcome = '', totalBudget = $userDataTotalAmount, updateDate = '$currentDate' WHERE email like '$userDataEmail'";
+
+		$result = $conn->query($sql2);
+
+	} else {
+		$sql3 = "INSERT INTO userdata (currentIncome, currentOutcome, email, totalBudget, insertDate, updateDate) VALUES ($userDataIncome, '', '$userDataEmail', $userDataTotalAmount, '$currentDate', '$currentDate')";
+
+		$result = $conn->query($sql3);
+	}
+
+
+
+
 
 ?>

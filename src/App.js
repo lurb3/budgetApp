@@ -45,6 +45,12 @@ class App extends Component {
 		})
 	}
 
+	handleChangeTotalAmount = (evt) => {
+		this.setState({
+			totalAmount: evt.target.value
+		})
+	}
+
 	handleFormClick = () => {
 		let prevState = this.state;
 		if(prevState.focused) {
@@ -97,17 +103,14 @@ class App extends Component {
 		e.preventDefault();
 		let prevState = this.state;
 		let data = {
+			email: prevState.email,
 			income: prevState.income,
+			totalAmount: prevState.totalAmount,
 		}
 		fetch("https://gustavomonteiro.pt/budgetapp/api/saveUserData.php", {
 			method: 'POST',
 			body: JSON.stringify(data),
 		})
-		/*.then(res => res.json())
-		.then(function(data){
-			let login = data;
-			console.log(login);
-		})*/
 	}
 
 	submitState = (e) => {
@@ -222,6 +225,7 @@ class App extends Component {
 							closePopup = {() => this.closePopup('userData')}
 							closeUserDataScreen = {() => this.closePopup('userData')}
 							income = {this.handleChangeIncome}
+							totalAmount = {this.handleChangeTotalAmount}
 							saveData = {this.saveUserData}
 						/>,
 						<Dashboard

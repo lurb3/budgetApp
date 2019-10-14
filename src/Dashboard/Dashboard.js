@@ -10,7 +10,7 @@ const dashboard = (props) =>  {
 				</div>
 
 				<div className="">
-					<button onClick={props.userDataClick}>Check Data</button>
+					<button onClick={props.userDataClick}>Edit Profile</button>
             	</div>
 
 				<div className="CurrentStats">

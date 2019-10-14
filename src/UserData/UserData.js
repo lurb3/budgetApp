@@ -11,9 +11,12 @@ const userdata = (props) =>  {
                 </div>
                 <form className="userdata-Form">
                     <div>
-                        <input onChange={props.income} type="text" className="text-center" placeholder="INCOME"></input>
+                        <input onChange={props.income} type="text" className="text-center" placeholder="INCOME / MONTH"></input>
                     </div>
                     
+                    <div>
+                        <input onChange={props.totalAmount} type="text" className="text-center" placeholder="TOTAL BUDGET"></input>
+                    </div>
                     
                     <button className="RegisterNewUser" onClick={props.saveData}>
                         Save Data
